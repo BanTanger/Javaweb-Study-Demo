@@ -10,7 +10,7 @@ import java.util.Properties;
  * @version 1.0
  * @Date 2022/4/10 16:00
  */
-public class BaseDao {
+public class BaseDAO {
     private static String driver;
     private static String url;
     private static String username;
@@ -18,7 +18,7 @@ public class BaseDao {
 
     static {
         Properties properties = new Properties();
-        InputStream is = BaseDao.class.getClassLoader().getResourceAsStream("db.properties");
+        InputStream is = BaseDAO.class.getClassLoader().getResourceAsStream("db.properties");
 
         try {
             properties.load(is);
@@ -36,7 +36,7 @@ public class BaseDao {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName(driver);
+            Class.forName(driver); // 通过反射得到数据库的配置
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class BaseDao {
     public static int execute(Connection connection, String sql, Object[] params, PreparedStatement preparedStatement) throws SQLException {
         preparedStatement = connection.prepareStatement(sql);
 
-        for(int i = 0; i < params.length; i++){
+        for (int i = 0; i < params.length; i++) {
             // setObject,占位符从1开始，数组下标从零开始，所以需要让i + 1
             preparedStatement.setObject(i + 1, params[i]);
         }
@@ -70,16 +70,37 @@ public class BaseDao {
     }
 
     // 关闭连接，释放资源
-    public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet){
+    public static boolean closeResource(Connection connection, PreparedStatement preparedStatement, ResultSet resultSet) {
         boolean flag = true;
-        if(resultSet != null){
+        // 遵循先进后出的关闭原则
+        if (resultSet != null) {
             try {
                 resultSet.close();
-                // GC回收
+                // 如果resultSet还存在，启动GC回收
                 resultSet = null;
             } catch (SQLException e) {
                 e.printStackTrace();
-                flag = false;
+                flag = false; // 如果关闭失败，错误
+            }
+        }
+        if (preparedStatement != null) {
+            try {
+                preparedStatement.close();
+                // 如果resultSet还存在，启动GC回收
+                preparedStatement = null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                flag = false; // 如果关闭失败，错误
+            }
+        }
+        if (connection != null) {
+            try {
+                connection.close();
+                // 如果resultSet还存在，启动GC回收
+                connection = null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                flag = false; // 如果关闭失败，错误
             }
         }
         return flag;
