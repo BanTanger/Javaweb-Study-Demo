@@ -24,7 +24,7 @@ public class CharacterEncodingFilter implements Filter {
         servletResponse.setCharacterEncoding("utf8");
         servletResponse.setContentType("text/html;charset=utf-8");
 
-        filterChain.doFilter(servletRequest,servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

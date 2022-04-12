@@ -16,16 +16,21 @@ public class BaseDAO {
     private static String username;
     private static String password;
 
+    // 静态代码块处理配置信息，在类加载时期就能生成。
     static {
+        // 得到配置类对象
         Properties properties = new Properties();
+        // 通过反射得到配置类，并且将其转换成输入流
         InputStream is = BaseDAO.class.getClassLoader().getResourceAsStream("db.properties");
 
         try {
+            // 尝试加载配置
             properties.load(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        // 获取所写配置类的信息
         driver = properties.getProperty("driver");
         url = properties.getProperty("url");
         username = properties.getProperty("username");
@@ -36,7 +41,8 @@ public class BaseDAO {
     public static Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName(driver); // 通过反射得到数据库的配置
+            // 通过反射得到数据库的配置
+            Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +52,8 @@ public class BaseDAO {
 
     // 编写查询公共类
     public static ResultSet execute(Connection connection, String sql, Object[] params, PreparedStatement preparedStatement, ResultSet resultSet) throws SQLException {
-        preparedStatement = connection.prepareStatement(sql); // 预处理，需要sql
+        // 得到SQL预处理对象，防止SQL注入情况
+        preparedStatement = connection.prepareStatement(sql);
 
         for (int i = 0; i < params.length; i++) {
             // setObject,占位符从1开始，数组下标从零开始，所以需要让i + 1
@@ -58,10 +65,11 @@ public class BaseDAO {
 
     // 编写增删改公共类
     public static int execute(Connection connection, String sql, Object[] params, PreparedStatement preparedStatement) throws SQLException {
+        // 得到SQL预处理对象，防止SQL注入情况
         preparedStatement = connection.prepareStatement(sql);
 
         for (int i = 0; i < params.length; i++) {
-            // setObject,占位符从1开始，数组下标从零开始，所以需要让i + 1
+            // setObject,占位符从1开始，但数组下标从零开始，所以需要让i + 1
             preparedStatement.setObject(i + 1, params[i]);
         }
 
