@@ -1,12 +1,16 @@
 package com.bantanger.dao.user;
 
+import com.bantanger.pojo.Role;
 import com.bantanger.pojo.User;
 import com.bantanger.dao.BaseDAO;
 import com.mysql.jdbc.PreparedStatement;
+import com.mysql.jdbc.StringUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author bantanger 半糖
@@ -73,7 +77,7 @@ public class UserDaoImpl implements UserDao {
      * DAO层通过数据库修改当前用户密码逻辑处理
      *
      * @param connection 连接数据库的连接对象
-     * @param id 操作用户处于数据库的位置id
+     * @param id         操作用户处于数据库的位置id
      * @param password   密码，用于更改
      * @return 返回要修改的数据位于数据库的哪一行，
      * 如果行数小于等于0就代表不存在这个数据
@@ -98,5 +102,102 @@ public class UserDaoImpl implements UserDao {
 
         // 将查询的结果返回（作用域向上提一级，避免报错）
         return execute;
+    }
+
+
+    /**
+     * DAO层联表查询数据库返回数据信息
+     * 包括每种角色有多少人，总共有多少个人，某一个姓氏有多少人
+     *
+     * @param connection 连接数据库的对象，由业务层创建
+     * @param username   用户名
+     * @param userRole   用户角色
+     * @return 返回人员数量
+     * @throws SQLException
+     */
+    @Override
+    public int getUserCount(Connection connection, String username, int userRole) throws SQLException {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        int count = 0;
+
+        if (connection != null) {
+            StringBuffer sql = new StringBuffer();
+            ArrayList<Object> list = new ArrayList<>(); // 使用ArrayList存放数组
+            sql.append("select count(1) as count from smbms_user u,smbms_role r where u.userRole = r.id"); // 联表查询的sql语句
+
+            if (!StringUtils.isNullOrEmpty(username)) {
+                sql.append(" and u.username like ?");
+                list.add("%" + username + "%"); // index:0
+            }
+
+            if (userRole > 0) {
+                sql.append(" and u.userRole = ?");
+                list.add(userRole); // index:1
+            }
+
+            // 将list转换成原型数组
+            Object[] params = list.toArray();
+
+            System.out.println("UserDaoImpl-->getUserCount" + sql.toString());
+
+            rs = BaseDAO.execute(connection, sql.toString(), params, pstm, rs);
+
+            if (rs.next()) {
+                count = rs.getInt("count");// 从结果集里获取最终的数量
+            }
+            BaseDAO.closeResource(null, pstm, rs);
+        }
+        return count;
+    }
+
+
+    @Override
+    public List<User> getUserList(Connection connection, String userName, int userRole, int currentPageNo, int pageSize) throws Exception {
+        // TODO Auto-generated method stub
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<User> userList = new ArrayList<User>();
+        if (connection != null) {
+            StringBuffer sql = new StringBuffer();
+            sql.append("select u.*,r.roleName as userRoleName from smbms_user u,smbms_role r where u.userRole = r.id");
+            List<Object> list = new ArrayList<Object>();
+            if (!StringUtils.isNullOrEmpty(userName)) {
+                sql.append(" and u.userName like ?");
+                list.add("%" + userName + "%");
+            }
+            if (userRole > 0) {
+                sql.append(" and u.userRole = ?");
+                list.add(userRole);
+            }
+            //在数据库中，分页显示 limit startIndex，pageSize；总数
+            //当前页  (当前页-1)*页面大小
+            //0,5	1,0	 01234
+            //5,5	5,0	 56789
+            //10,5	10,0 10~
+            sql.append(" order by creationDate DESC limit ?,?"); // 分页查询的SQL语句
+            currentPageNo = (currentPageNo - 1) * pageSize;
+            list.add(currentPageNo);
+            list.add(pageSize);
+
+            Object[] params = list.toArray();
+            System.out.println("sql ----> " + sql.toString());
+
+            rs = BaseDAO.execute(connection, sql.toString(), params, pstm, rs);
+            while (rs.next()) {
+                User _user = new User();
+                _user.setId(rs.getInt("id"));
+                _user.setUserCode(rs.getString("userCode"));
+                _user.setUserName(rs.getString("userName"));
+                _user.setGender(rs.getInt("gender"));
+                _user.setBirthday(rs.getDate("birthday"));
+                _user.setPhone(rs.getString("phone"));
+                _user.setUserRole(rs.getInt("userRole"));
+                _user.setUserRoleName(rs.getString("userRoleName"));
+                userList.add(_user);
+            }
+            BaseDAO.closeResource(null, pstm, rs);
+        }
+        return userList;
     }
 }

@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author bantanger 半糖
@@ -82,10 +83,53 @@ public class UserServiceImpl implements UserService {
         return flag;
     }
 
+    @Override
+    public int getUserCount(String username, int userRole) {
+        Connection connection = null;
+        int count = 0;
+        try {
+            connection = BaseDAO.getConnection();
+            count = userDao.getUserCount(connection, username, userRole);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BaseDAO.closeResource(connection,null,null);
+        }
+        return count;
+    }
+
+    @Override
+    public List<User> getUserList(String queryUserName, int queryUserRole, int currentPageNo, int pageSize)  {
+        // TODO Auto-generated method stub
+        Connection connection = null;
+        List<User> userList = null;
+        System.out.println("queryUserName ---- > " + queryUserName);
+        System.out.println("queryUserRole ---- > " + queryUserRole);
+        System.out.println("currentPageNo ---- > " + currentPageNo);
+        System.out.println("pageSize ---- > " + pageSize);
+        try {
+            connection = BaseDAO.getConnection();
+            userList = userDao.getUserList(connection, queryUserName,queryUserRole,currentPageNo,pageSize);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            BaseDAO.closeResource(connection, null, null);
+        }
+        return userList;
+    }
+
+
     @Test
-    public void test() {
+    public void loginTest() {
         UserServiceImpl userService = new UserServiceImpl();
         User admin = userService.login("admin", "123456");
         System.out.println("用户admin的password是: " + admin.getUserPassword());
+    }
+
+    @Test
+    public void getUserCountTest(){
+        int count = new UserServiceImpl().getUserCount(null,2);
+        System.out.println(count);
     }
 }

@@ -10,22 +10,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b1df43bf-d329-4570-b2f4-37479207706f" name="Changes" comment="Commit 22-4-11">
-      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/filter/SysFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/servlet/user/LogoutServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/servlet/user/UserServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smbms/src/main/webapp/error.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/smbms/src/main/webapp/jsp/pwdmodify.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/smbms_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/smbms_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/role/RoleDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/role/RoleDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/service/role/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/service/role/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/util/PageSupport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/webapp/jsp/rollpage.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/smbms/src/main/webapp/jsp/userlist.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smbms/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/BaseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/BaseDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/user/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/user/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/user/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/dao/user/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/filter/CharacterEncodingFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/filter/CharacterEncodingFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/service/user/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/service/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/smbms/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/servlet/user/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/java/com/bantanger/servlet/user/UserServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/smbms/src/main/webapp/js/pwdmodify.js" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/webapp/js/pwdmodify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/smbms/src/main/webapp/jsp/pwdmodify.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/smbms/src/main/webapp/jsp/pwdmodify.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,14 +85,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/smbms/src/main/webapp/jsp" />
+    <property name="last_opened_file_path" value="D:/SMBMS-master/src/main/java/cn/smbms/servlet/user/UserServlet.java" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
+    <property name="two.files.diff.last.used.file" value="D:/SMBMS-master/src/main/java/cn/smbms/servlet/user/UserServlet.java" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Java 学习项目集合\Javaweb-Study-Demp\smbms\src\main\java\com\bantanger\util" />
       <recent name="E:\Java 学习项目集合\Javaweb-Study-Demp\smbms\src\main\webapp\jsp" />
       <recent name="E:\Java 学习项目集合\Javaweb-Study-Demp\smbms\src\main\webapp" />
       <recent name="E:\Java 学习项目集合\Javaweb-Study-Demp\smbms\src\main\java\com\bantanger\pojo" />
@@ -105,19 +106,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 8.0.50">
-    <configuration name="Testjdbc" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bantanger.jdbc.Testjdbc" />
-      <module name="filter" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.bantanger.jdbc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Testjdbc2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.bantanger.jdbc.Testjdbc2" />
       <module name="filter" />
@@ -140,6 +128,38 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RoleServiceImpl.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smbms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bantanger.service.role.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bantanger.service.role" />
+      <option name="MAIN_CLASS_NAME" value="com.bantanger.service.role.RoleServiceImpl" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceImpl.getUserCountTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="smbms" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.bantanger.service.user.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.bantanger.service.user" />
+      <option name="MAIN_CLASS_NAME" value="com.bantanger.service.user.UserServiceImpl" />
+      <option name="METHOD_NAME" value="getUserCountTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -251,18 +271,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Testjdbc" />
       <item itemvalue="Application.Testjdbc2" />
       <item itemvalue="Application.Testjdbc3" />
       <item itemvalue="JUnit.UserServiceImpl.test" />
       <item itemvalue="Tomcat Server.Tomcat 8.0.50" />
+      <item itemvalue="JUnit.UserServiceImpl.getUserCountTest" />
+      <item itemvalue="JUnit.RoleServiceImpl.test" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RoleServiceImpl.test" />
+        <item itemvalue="JUnit.UserServiceImpl.getUserCountTest" />
         <item itemvalue="JUnit.UserServiceImpl.test" />
         <item itemvalue="Application.Testjdbc3" />
         <item itemvalue="Application.Testjdbc2" />
-        <item itemvalue="Application.Testjdbc" />
       </list>
     </recent_temporary>
   </component>
@@ -278,6 +300,7 @@
       <workItem from="1649509852765" duration="13542000" />
       <workItem from="1649575629106" duration="26102000" />
       <workItem from="1649743994476" duration="19009000" />
+      <workItem from="1649832094680" duration="14656000" />
     </task>
     <task id="LOCAL-00001" summary="Commit 22-4-10">
       <created>1649600955446</created>

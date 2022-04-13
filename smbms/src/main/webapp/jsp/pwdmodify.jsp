@@ -11,11 +11,11 @@
                     <input type="hidden" name="method" value="savepwd">
                     <!--div的class 为error是验证错误，ok是验证成功-->
                     <div class="info">${message}</div>
-                    <%--<div class="">
+                    <div class="">
                         <label for="oldPassword">旧密码：</label>
                         <input type="password" name="oldpassword" id="oldpassword" value=""> 
 						<font color="red"></font>
-                    </div>--%>
+                    </div>
                     <div>
                         <label for="newPassword">新密码：</label>
                         <input type="password" name="newpassword" id="newpassword" value=""> 
@@ -28,7 +28,7 @@
                     </div>
                     <div class="providerAddBtn">
                         <!--<a href="#">保存</a>-->
-                        <input type="submit" name="save" id="save" value="保存" class="input-button">
+                        <input type="button" name="save" id="save" value="保存" class="input-button">
                     </div>
                 </form>
             </div>
