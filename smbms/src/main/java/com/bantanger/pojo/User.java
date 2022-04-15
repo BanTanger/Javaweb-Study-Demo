@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class User {
 
+  private Integer age;
   private Integer id;
   private String userCode;
   private String userName;
@@ -19,6 +20,14 @@ public class User {
   private Integer modifyBy;
   private Date modifyDate;
   private String userRoleName;    //用户角色名称
+
+  public Integer getAge() {
+    return age;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
 
   public String getUserRoleName() {
     return userRoleName;
